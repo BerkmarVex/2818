@@ -17,7 +17,7 @@ static const int CALVINPUTTHEPOSITIONHERE = 0;
 #include "dualzone.h"
 
 
-void DEGUG(){
+void DEBUG(){
   printf("%d\n", encoderGet(one));
 }
 /*
@@ -39,7 +39,7 @@ void DEGUG(){
  */
 
  bool liftUp;
- bool liftMid
+ bool liftMid;
  bool liftDown;
  bool goalUp;
  bool goalDown;
@@ -74,7 +74,7 @@ void operatorControl() {
 			}
 
       else if(liftMid){
-        motorSet(LIFT, singlePid(&lift));
+        motorSet(LIFT, pidDo(&lift));
       }
 
       else {

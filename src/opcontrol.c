@@ -11,6 +11,8 @@ bool goalDown;
 bool clawUp;
 bool clawDown;
 int tankRightDrive;
+int verticalJoyLeft;
+int horizontalJoyRight;
 int tankLeftDrive;
 
 void update() {
@@ -19,8 +21,8 @@ void update() {
 	liftDown   = joystickGetDigital(1, 5, JOY_DOWN);
 	goalUp     = joystickGetDigital(1, 6, JOY_UP);
 	goalDown   = joystickGetDigital(1, 6, JOY_DOWN);
-	clawUp     = joystickGetDigital(1, 7, JOY_UP);
-	clawDown   = joystickGetDigital(1, 7, JOY_DOWN);
+	clawUp     = joystickGetDigital(1, 8, JOY_UP);
+	clawDown   = joystickGetDigital(1, 8, JOY_DOWN);
 
 }
 
@@ -41,7 +43,11 @@ void tank() {
 }
 
 void arcade() {
+  verticalJoyLeft    = joystickGetAnalog(1, 3);
+  horizontalJoyRight = joystickGetAnalog(1, 1);
 
+  motorSet(DRIVELEFT, (horizontalJoyRight) + verticalJoyLeft);
+	motorSet(DRIVERIGHT, (horizontalJoyRight) - verticalJoyLeft);
 }
 
 void operatorControl() {
@@ -91,8 +97,8 @@ void operatorControl() {
 			motorStop(CLAW);
 		}
 
-    tank();
-
+    //tank();
+    arcade();
 		delay(20);
 	}
 }
